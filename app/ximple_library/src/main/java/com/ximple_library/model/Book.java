@@ -9,19 +9,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import com.ximple_library.model.Author;
 import com.ximple_library.enums.BookGenre;
+
+import java.util.List;
 
 @Entity
 @Table(name="book")
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="book_sequence")
@@ -32,9 +37,15 @@ public class Book {
     @Column(unique=true)
     private String ISSN;
 
+    private String title;
+
     @ManyToMany
-    @JoinColumn(name="author_id")
-    private Author authors;
+    @JoinTable(
+        name="book_author",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<Author> authors;
 
     // could be a ManyToMany field
     @Enumerated(EnumType.STRING)
