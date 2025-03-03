@@ -14,31 +14,34 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-import com.ximple_library.model.Book;
-import com.ximple_library.model.BookEdition;
 import com.ximple_library.model.Member;
+import com.ximple_library.model.BookCopy;
+import com.ximple_library.enums.ReservationStatus;
 
 @Entity
-@Table(name="review")
+@Table(name="reservation")
 @Getter
 @Setter
 @AllArgsConstructor
-public class Review {
+public class Reservation {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name="book_copy_id")
+    private BookCopy book;
+    @ManyToOne
     @JoinColumn(name="member_id")
     private Member member;
-    @ManyToOne
-    @JoinColumn(name="book_id")
-    private Book book;
-    @ManyToOne
-    @JoinColumn(name="book_edition_id")
-    private BookEdition edition;
 
-    private LocalDateTime reviewDateTime;
+    private LocalDate availableDate;
+    private LocalDate loanDate;
+    private LocalDate dueDate;
+    private LocalDate returnDate;
+
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus status;
 }

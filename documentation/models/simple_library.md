@@ -56,16 +56,19 @@ class Book {
     +String ISBN
     +String ISSN
     +String title
-    +Author author
+    +Author authors
     +Genre genre
 }
 
 class Member {
-    +String memberId
-    +Email email
-    +String name
+    +Long id
+    +String email
+    +String document
     +String phoneNumber
-    +Address address
+    +String firstName
+    +String lastName
+    +String address
+    +Bool isStaff
 }
 
 class LibrarySystem {

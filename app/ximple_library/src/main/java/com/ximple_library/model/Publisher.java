@@ -13,25 +13,20 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="member")
+@Table(name="publisher")
 @Getter
 @Setter
 @AllArgsConstructor
-public class Member {
+public class Publisher {
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="member_sequence")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="publisher_sequence")
     private Long id;
 
     @Column(unique=true)
     private String email;
     @Column(unique=true)
-    private String document;
-    @Column(unique=true)
     private String phoneNumber;
 
-    private String firstName;
-    private String lastName;
-    private String password;
-    private boolean isStaff;
+    private String name;
     private LocalDate registerDate;
 }
