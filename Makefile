@@ -21,6 +21,7 @@ down:
 # 	cat build.log | grep BUILD
 
 run: up
+	docker logs -f $(API_CONTAINER)
 # run: up build-api
 # 	docker exec -it $(API_CONTAINER) bash -c "mvn spring-boot:run"
 
