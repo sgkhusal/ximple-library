@@ -16,12 +16,13 @@ build:
 down:
 	docker-compose -f $(PROJECT_FILE) --project-name $(PROJECT_NAME) down --remove-orphans
 
-build-api:
-	docker exec -it $(API_CONTAINER) bash -c "cd $(PROJECT_NAME) && mvn clean package" > build.log
-	cat build.log | grep BUILD
+# build-api:
+# 	docker exec -it $(API_CONTAINER) bash -c "mvn clean package" > build.log
+# 	cat build.log | grep BUILD
 
-run: up build-api
-	docker exec -it $(API_CONTAINER) bash -c "java -jar target/$(PROJECT_NAME)-1.0-SNAPSHOT.jar"
+run: up
+# run: up build-api
+# 	docker exec -it $(API_CONTAINER) bash -c "mvn spring-boot:run"
 
 api-bash:
 	docker exec -it $(API_CONTAINER) bash
@@ -33,9 +34,7 @@ db-logs:
 	docker logs -f $(DB_CONTAINER)
 
 clean: down
-	docker volume prune
-
-fclean:
 	docker-compose -f $(PROJECT_FILE) --project-name $(PROJECT_NAME) down -v --remove-orphans
+	docker rmi -f $(API_CONTAINER)
 
 .PHONY: dump

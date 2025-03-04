@@ -1,16 +1,17 @@
-# FROM eclipse-temurin:21
 FROM openjdk:21-jdk-slim
 
 RUN apt update -y && apt install -y maven \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# RUN mkdir /opt/app
-
 COPY ./ /app
-WORKDIR /app
+WORKDIR /app/ximple_library
 
-# COPY japp.jar /opt/app
-CMD ["tail", "-f", "/dev/null"]
+RUN chmod +x ./script.sh
+
+STOPSIGNAL SIGQUIT
+
+ENTRYPOINT [ "/app/ximple_library/script.sh" ]
+CMD ["mvn", "spring-boot:run"]
+# CMD ["tail", "-f", "/dev/null"]
 # CMD ["java", "-jar", "/app/app.jar"]
 # CMD ["java", "HelloWorld"]
-
