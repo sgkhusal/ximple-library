@@ -23,56 +23,58 @@ BookEdition --o Publisher
 
 
 class Country {
-    +String name
-    +String country_code
+    -String name
+    -String country_code
 }
 class Author {
-    +String name
-    +LocalDate birth
-    +LocalDate death
-    +Country natinality
+    -String firstName
+    -String lastName
+    -LocalDate birth
+    -LocalDate death
+    -Country nationality
 }
 class Publisher {
-    +String name
-    +String code
-    +Adress address
+    -String name
+    -String email
+    -String phoneNumber
+    -Adress address
+    -LocalDate registerDate
 }
 class BookCopy {
-    +Library library
-    +Book book
-    +BookEdition edition
-    +String code
-    +int status
+    -Book book
+    -BookEdition edition
+    -BookCopyStatus status
 }
 class BookEdition {
-    +Book book
-    +Publisher publisher
-    +int year
-    +int editionNumber
-    +int pages
-    +Language language
+    -Book book
+    -Publisher publisher
+    -int year
+    -int editionNumber
+    -int pages
+    -Language language
 }
 class Book {
-    +String ISBN
-    +String ISSN
-    +String title
-    +Author authors
-    +Genre genre
+    -String ISBN
+    -String ISSN
+    -String title
+    -Author authors
+    -Genre genre
 }
 
 class Member {
-    +Long id
-    +String email
-    +String document
-    +String phoneNumber
-    +String firstName
-    +String lastName
-    +String address
-    +Bool isStaff
+    -String email
+    -String document
+    -String phoneNumber
+    -String firstName
+    -String lastName
+    -String password
+    -String address
+    -Bool isStaff
+    -LocalDate registerDate
 }
 
 class LibrarySystem {
-    +Book books
+    -Book books
     addAuthor()
     addPublisher()
     addBook()
@@ -81,23 +83,25 @@ class LibrarySystem {
     removeFromWaitList(member, book)
 }
 class Reservation {
-    +Library library
-    +BookCopy bookCopy
-    +Member member
-    +LocalDate loanDate
-    +LocalDate dueDate
-    +LocalDate returnDate
+    -BookCopy bookCopy
+    -Member member
+    -LocalDate availableDate
+    -LocalDate loanDate
+    -LocalDate dueDate
+    -LocalDate returnDate
+    -ReservationStatus status
 }
 class Review {
-    +Member member
-    +Book book
-    +BookEdition edition
+    -Member member
+    -Book book
+    -BookEdition edition
+    -LocalDateTime reviewDateTime
     addReview()
 }
 class WaitList {
-    +Book book
-    +Member member
-    +LocalDateTime enterDate
+    -Book book
+    -Member member
+    -LocalDateTime enterDateTime
 }
 
 

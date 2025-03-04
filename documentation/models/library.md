@@ -22,77 +22,88 @@ BookEdition --o Publisher
 Address -- Publisher
 
 class Library {
-    +String name
-    +Adress address
-    +BookCopy books
+    -String name
+    -Adress address
+    -BookCopy books
     makeReservation(book)
 }
 class Country {
-    +String name
-    +String country_code
+    -String name
+    -String country_code
 }
 class Author {
-    +String name
-    +LocalDate birth
-    +LocalDate death
-    +Country natinality
+    -String firstName
+    -String lastName
+    -LocalDate birth
+    -LocalDate death
+    -Country nationality
 }
 class Publisher {
-    +String name
-    +String code
-    +Adress address
+    -String name
+    -String email
+    -String phoneNumber
+    -Adress address
+    -LocalDate registerDate
 }
 class BookCopy {
-    +Library library
-    +Book book
-    +BookEdition edition
-    +String code
+    -Library library
+    -Book book
+    -BookEdition edition
+    -BookCopyStatus status
 }
 class BookEdition {
-    +Book book
-    +Publisher publisher
-    +int year
-    +int editionNumber
-    +int pages
-    +Language language
+    -Book book
+    -Publisher publisher
+    -int year
+    -int editionNumber
+    -int pages
+    -Language language
 }
 class Book {
-    +String ISBN
-    +String ISSN
-    +String title
-    +Author author
-    +Genre genre
+    -String ISBN
+    -String ISSN
+    -String title
+    -Author author
+    -Genre genre
 }
 class LibraryCatalog {
-    +Library library
-    +Book books
+    -Library library
+    -Book books
     addBook(bookEdition, qty)
 }
 class Reservation {
-    +Library library
-    +BookCopy bookCopy
-    +Member member
-    +LocalDate loanDate
-    +LocalDate dueDate
-    +LocalDate returnDate
+    -Library library
+    -BookCopy bookCopy
+    -Member member
+    -LocalDate availableDate
+    -LocalDate loanDate
+    -LocalDate dueDate
+    -LocalDate returnDate
+    -ReservationStatus status
 }
 class WaitList {
-    +Book book
-    +Member member
-    +LocalDateTime enterDate
+    -Book book
+    -Member member
+    -LocalDateTime enterDate
 }
 
 class Member {
-    +Library library
-    +String memberId
-    +Email email
-    +String name
-    +String phoneNumber
-    +Address address
+    -Library library
+    -String email
+    -String document
+    -String phoneNumber
+    -String firstName
+    -String lastName
+    -String password
+    -Address address
+    -Bool isStaff
+    -LocalDate registerDate
 }
 class Review {
-    +Member member
-    +Book book
-    +BookEdition edition
+    -Member member
+    -Book book
+    -BookEdition edition
+    -LocalDateTime reviewDateTime
+    addReview()
 }
 ```
