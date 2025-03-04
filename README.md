@@ -3,10 +3,14 @@
 ## Running the project
 
 - Requires docker installed
-- To run the application:
+1. Clone the repository:
 ```bash
  git clone https://github.com/sgkhusal/ximple-library.git
  cd ximple-library
+```
+2. Create an `.env` file based on `.env.example`
+3. To run the application:
+```bash
  make run
 ```
 Two containers will run, one with a postgress database and another with the library API in Java 21
